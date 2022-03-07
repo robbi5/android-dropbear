@@ -33,15 +33,15 @@ grep Pkg.Revision "$ANDROID_NDK_HOME/source.properties" | \
 git clone --branch "$version" --depth 1 https://github.com/mkj/dropbear.git
 cd dropbear
 
+# Generate configure and config.h
+autoconf
+autoheader
+
 if [ "$patchcount" -gt 0 ]; then
     for patch in ../*.patch; do
         patch -p1 < "$patch"
     done
 fi
-
-# Generate configure and config.h
-autoconf
-autoheader
 
 ./configure --host="$TARGET" \
     AR="$toolchain/bin/llvm-ar" \
