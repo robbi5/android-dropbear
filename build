@@ -47,7 +47,13 @@ fi
     AR="$toolchain/bin/llvm-ar" \
     CC="$toolchain/bin/$TARGET$PLATFORM-clang" \
     RANLIB="$toolchain/bin/llvm-ranlib" \
-    STRIP="$toolchain/bin/llvm-strip"
+    STRIP="$toolchain/bin/llvm-strip" \
+    --disable-utmp \
+    --disable-wtmp \
+    --disable-utmpx \
+    --disable-zlib \
+    --disable-syslog \
+    --disable-lastlog
 
 cp ../localoptions.h .
 
