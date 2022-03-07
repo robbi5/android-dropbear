@@ -72,7 +72,7 @@ jobs:
 
       - name: Latest release tag name
         id: latest_release
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           result-encoding: string
           script: |
@@ -90,6 +90,7 @@ jobs:
               repo: context.repo.repo,
             }
             const result = await github.graphql(query, vars)
+            if (result.repository.releases.nodes.length < 1) return ''
             return result.repository.releases.nodes[0].tagName
 
       - name: Fetch armv7a artifact
