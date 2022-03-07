@@ -127,7 +127,8 @@ jobs:
       - name: Create release
         if: >
           env.BUILD_RELEASE != steps.latest_release.outputs.result &&
-          github.event_name == 'push' && github.ref == 'refs/heads/master'
+          (github.event_name == 'push' && github.ref == 'refs/heads/master') || 
+          github.event_name == 'workflow_dispatch'
         id: create_release
         uses: actions/create-release@v1
         with:
@@ -142,7 +143,8 @@ jobs:
       - name: Upload armv7a-linux-androideabi zip asset
         if: >
           env.BUILD_RELEASE != steps.latest_release.outputs.result &&
-          github.event_name == 'push' && github.ref == 'refs/heads/master'
+          (github.event_name == 'push' && github.ref == 'refs/heads/master') || 
+          github.event_name == 'workflow_dispatch'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -155,7 +157,8 @@ jobs:
       - name: Upload aarch64-linux-android zip asset
         if: >
           env.BUILD_RELEASE != steps.latest_release.outputs.result &&
-          github.event_name == 'push' && github.ref == 'refs/heads/master'
+          (github.event_name == 'push' && github.ref == 'refs/heads/master') || 
+          github.event_name == 'workflow_dispatch'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -168,7 +171,8 @@ jobs:
       - name: Upload i686-linux-android zip asset
         if: >
           env.BUILD_RELEASE != steps.latest_release.outputs.result &&
-          github.event_name == 'push' && github.ref == 'refs/heads/master'
+          (github.event_name == 'push' && github.ref == 'refs/heads/master') || 
+          github.event_name == 'workflow_dispatch'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -181,7 +185,8 @@ jobs:
       - name: Upload x86_64-linux-android zip asset
         if: >
           env.BUILD_RELEASE != steps.latest_release.outputs.result &&
-          github.event_name == 'push' && github.ref == 'refs/heads/master'
+          (github.event_name == 'push' && github.ref == 'refs/heads/master') || 
+          github.event_name == 'workflow_dispatch'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
